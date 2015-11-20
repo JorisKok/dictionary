@@ -1,0 +1,29 @@
+#:kivy 1.0.9
+
+<Menu>:
+    BoxLayout:
+        pos: 0, 0
+        size_hint: 1, 1
+        orientation: "vertical"
+        Button:
+            text: "Search"
+            on_press:
+                root.manager.current = "search"
+                root.manager.transition.direction = "left"
+        Label:
+            text: "Learn:"
+        Button:
+            text: "Flash cards"
+            on_press:
+                root.manager.current = "review"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Export"
+        Label:
+            text: "Extra:"
+        Button:
+            text: "Remove advertisement"
+        Button:
+            text: "Settings"
+        Button:
+            text: "About"

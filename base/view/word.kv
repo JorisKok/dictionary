@@ -1,0 +1,72 @@
+#:kivy 1.0.9
+#encoding: utf-8
+
+<Word>:
+    BoxLayout:
+        size_hint: 1, 1
+        orientation: "vertical"
+        color: 0.5, 0, 0.6, 0.5
+        BoxLayout:
+            pos: 0, 0
+            size_hint: 1, None
+            height: 60
+            orientation: "horizontal"
+            Button:
+                size_hint: 0.1, 1
+                background_color: 0.9, 0.9, 0.9, 1
+                color: 0.5, 0, 0.6, 0.5
+                background_normal: ""
+                background_down: ""
+                text: ""  # Go back character
+                font_name: root.font_awesome
+                on_press:
+                    root.manager.current = "search"
+                    root.manager.transition.direction = "right"
+            Label:
+                id: title
+                font_name: root.font
+                font_size: 24
+                size_hint: 0.8, 1
+                color: 0, 0, 0, 1
+            Label:
+                size_hint: 0.1, 1
+        Label:
+            color: 1, 1, 1, 1
+            text: ""
+            size_hint: 1, None
+            height: 15
+            canvas:
+                Color:
+                    rgba: 0.5, 0, 0.6, 0.5
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            font_type: root.font
+            font_size: 12
+        Label:
+            color: 1, 1, 1, 1
+            text: ""
+            size_hint: 1, None
+            height: 15
+            canvas:
+                Color:
+                    rgba: 0.9, 0.9, 0.9, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: character
+            color: 1, 1, 0, 1
+            text: "Some character"
+            size_hint: 1, None
+            height: 75
+            canvas:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            font_type: root.font
+            font_size: 12
+        Label:
+            id: definition

@@ -1,0 +1,98 @@
+#:kivy 1.0.9
+
+<Search>:
+    BoxLayout:
+        id: box_layout
+        size_hint: 1, 1
+        orientation: "vertical"
+        BoxLayout:
+            pos: 0, 0
+            size_hint: 1, None
+            height: 60
+            orientation: "horizontal"
+            Button:
+                size_hint: 0.1, 1
+                border: 0.54, 0, 0, 0
+                background_color: 0.9, 0.9, 0.9, 1
+                background_normal: ""
+                background_down: ""
+                color: 0.5, 0, 0.6, 0.5
+                text: ""  # The menu character
+                font_name: root.font_awesome
+                on_press:
+                    root.manager.current = "menu"
+                    root.manager.transition.direction = "right"
+            TextInput:
+                id: search_input
+                size_hint: 0.8, 1
+                multiline: False
+                on_text_validate: root.search_button_clicked()
+                font_name: root.font
+                font_size: 24
+                background_color: 1, 1, 1, 1
+                border: 0.1, 0.1, 0.1, 0.1
+                background_normal: ""
+                background_active: ""
+                background_disabled_normal: ""
+                background_disabled_active: ""
+                color: 1,1,0,1
+                padding: ["14dp", "14dp"]
+            Button:
+                size_hint: 0.1, 1
+                color: 0.5, 0, 0.6, 0.5
+                background_color: 0.9, 0.9, 0.9, 1
+                background_normal: ""
+                background_down: ""
+                font_name: root.font_awesome
+                text: ""  # The search character
+                on_press: root.search_button_clicked()
+        Label:
+            color: 1, 1, 1, 1
+            text: ""
+            size_hint: 1, None
+            height: 15
+            canvas:
+                Color:
+                    rgba: 0.5, 0, 0.6, 0.5
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            font_type: root.font
+            font_size: 12
+        ScrollView:
+            id: scroll_view
+            GridLayout:
+                id: scroll_view_content
+                height: self.minimum_height
+                size_hint_y: None
+                cols: 1
+                row_default_height: 50
+                row_force_default: True
+                spacing: 0, 0
+                padding: 0, 0
+
+[NonSelectableListItem@Label]
+    font_name: ctx.font
+    color: 0, 0, 0, 1
+    height: 50
+    text: ctx.list_text
+    text_size: self.size
+    padding: ["14dp", "0dp"]
+    id_as_string: ctx.id_as_string
+    markup: True
+
+# This we we don't require the ListItemButton's background, which we don't want. We just want the ButtonBehavior
+[SelectableListItem@ButtonBehavior+SelectableView+Label+SelectableDataItem]
+    background_color: 0, 0, 0, 1
+    selected_color: 0.5, 0, 0.6, 0.5
+    deselected_color: 0, 0, 0, 1
+    color: 0, 0, 0, 1
+    font_name: ctx.font
+    height: 50
+    list_key: ctx.list_key
+    text: ctx.list_text
+    markup: True
+    text_size: self.size
+    padding: ["14dp", "0dp"]
+    scrolling: True
+    id_as_string: ctx.id_as_string
